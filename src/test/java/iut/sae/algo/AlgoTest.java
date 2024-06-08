@@ -26,6 +26,18 @@ public class AlgoTest extends TestCase{
 
    }
 
+   @Test
+   public void testRLE2(){
+      assertEquals("", simplicite.compress("") );
+      assertEquals("1a1b1c", simplicite.compress("abc"));
+      assertEquals("1a2b3c", simplicite.compress("abbccc"));
+      assertEquals("3a1b2a", simplicite.compress("aaabaa"));
+      assertEquals("1a1A1a", simplicite.compress("aAa"));
+      assertEquals("9W4W", simplicite.compress("WWWWWWWWWWWWW"));
+      
+
+   }
+
 
    /*
    * RLE(str, 1)=RLE(str)

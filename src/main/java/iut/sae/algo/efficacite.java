@@ -10,13 +10,13 @@ public class efficacite {
         // Ici on cherche les meme caracteres du input texte pour les compter
         pattern.matcher(texte).results().forEach(resultat -> {
             int rep = resultat.group(1).length();
-            
+
              // Si le nombre d'occurrences est supérieur à 9, le diviser en plusieurs groupes de 9
             while (rep > 9) {
-                sb.append(resultat.group(2)).append(9);
+                sb.append(9).append(resultat.group(2));
                 rep -= 9;
             }
-            sb.append(resultat.group(2)).append(rep);
+            sb.append(rep).append(resultat.group(2));
         });
         return sb.toString();
     }

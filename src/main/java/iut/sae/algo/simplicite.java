@@ -13,12 +13,12 @@ public class simplicite {
 
             // Si le nombre d'occurrences est supérieur à 9, le diviser en plusieurs groupes de 9
             while (cpt > 9) {
-                sb.append(texte.charAt(texteIndex)).append(9);
+                sb.append(9).append(texte.charAt(texteIndex));
                 cpt -= 9;
             }
 
             // Ajouter le caractère et son nombre d'occurrences au StringBuilder
-            sb.append(texte.charAt(texteIndex)).append(cpt);
+            sb.append(cpt).append(texte.charAt(texteIndex));
         }
         return sb.toString();
     }
