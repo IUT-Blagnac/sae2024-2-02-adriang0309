@@ -21,6 +21,8 @@ public class AlgoTest extends TestCase{
       assertEquals("1a2b3c", Algo.RLE("abbccc"));
       assertEquals("3a1b2a", Algo.RLE("aaabaa"));
       assertEquals("1a1A1a", Algo.RLE("aAa"));
+      assertEquals("9W4W", Algo.RLE("WWWWWWWWWWWWW"));
+      
 
    }
 
@@ -69,6 +71,7 @@ public class AlgoTest extends TestCase{
          assertEquals("abbccc", Algo.unRLE("1a2b3c"));
          assertEquals("aaabaa", Algo.unRLE("3a1b2a"));
          assertEquals("aAa", Algo.unRLE("1a1A1a"));
+         assertEquals("WWWWWWWWWWWWW", Algo.unRLE("9W4W"));
       }
       catch(Exception e){
          fail("Exception inatendue");
