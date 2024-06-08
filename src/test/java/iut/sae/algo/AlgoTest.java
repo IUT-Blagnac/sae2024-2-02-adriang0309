@@ -27,7 +27,7 @@ public class AlgoTest extends TestCase{
    }
 
    @Test
-   public void testRLE2(){
+   public void testSimplicite(){
       assertEquals("", simplicite.compress("") );
       assertEquals("1a1b1c", simplicite.compress("abc"));
       assertEquals("1a2b3c", simplicite.compress("abbccc"));
