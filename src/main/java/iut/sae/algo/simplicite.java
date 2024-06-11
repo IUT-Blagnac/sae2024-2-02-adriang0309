@@ -1,25 +1,50 @@
 package iut.sae.algo;
 
 public class simplicite {
-    public static String compress(String texte) {
-        StringBuilder sb = new StringBuilder();
-        for (int texteIndex = 0; texteIndex < texte.length(); texteIndex++) {
-            int cpt = 1;
-            // Tant que le caractère suivant est le même, incrémenter le compteur
-            while (texteIndex < texte.length() - 1 && texte.charAt(texteIndex) == texte.charAt(texteIndex + 1)) {
-                cpt++;
-                texteIndex++;
-            }
 
-            // Si le nombre d'occurrences est supérieur à 9, le diviser en plusieurs groupes de 9
-            while (cpt > 9) {
-                sb.append(9).append(texte.charAt(texteIndex));
-                cpt -= 9;
-            }
-
-            // Ajouter le caractère et son nombre d'occurrences au StringBuilder
-            sb.append(cpt).append(texte.charAt(texteIndex));
+    public static String RLE(String in) {
+        // On verifie que la chaine a lentree n'est pas null
+        if (in.isEmpty()) {
+            return "";
         }
+
+        StringBuilder sb = new StringBuilder();
+
+        int cpt = 1;
+
+        for (int i = 1; i < in.length(); i++) {
+            if (in.charAt(i) == in.charAt(i - 1)) {
+                if (cpt < 9) {
+                    cpt++;
+                } else {
+                    sb.append(9).append(in.charAt(i - 1));
+                    cpt = 1;
+                }
+            } else {
+                sb.append(cpt).append(in.charAt(i - 1));
+                cpt = 1;
+            }
+        }
+        sb.append(cpt).append(in.charAt(in.length() - 1));
         return sb.toString();
+
     }
+
+    public static String RLE(String in, int iteration) throws AlgoException {
+        // Provide your algo here
+        return "NotYetImplemented";
+    }
+
+    public static String unRLE(String in) throws AlgoException {
+        // Provide your algo here
+        return "NotYetImplemented";
+
+    }
+
+    public static String unRLE(String in, int iteration) throws AlgoException {
+        // Provide your algo here
+        return "NotYetImplemented";
+
+    }
+
 }
