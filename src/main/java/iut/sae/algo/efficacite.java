@@ -34,11 +34,12 @@ public class efficacite {
         if (iteration <= 0 || in.isEmpty()) {
             return in;
         }
-        String result = in;
+        
         for (int i = 0; i < iteration; i++) {
-            result = RLE(result);
+            in = RLE(in);
         }
-        return result;
+        
+        return in;
     }
 
     public static String unRLE(String in) throws AlgoException{
