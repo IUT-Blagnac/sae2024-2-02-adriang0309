@@ -165,7 +165,7 @@ Vous utiliserez le dépôt initial qui vous aura été attribué via classroom p
 |==========================================================================
 | #    | lien                                                     | langage  | catégorie 
 | 1    | link:src/main/java/exercice/Exercice1.java[meilleur java]| Java     | Simplicité
-| 2    | link:src/main/java/exercice/Exercice2.java[meilleur C]    | C     | Efficacité
+| 2    | link:src/main/java/exercice/Exercice2.java[meilleur C]    | Java     | Efficacité
 | ...  | ...                                                      | ...      | ...      
 |==========================================================================
 
@@ -182,15 +182,13 @@ WARNING: Les répertoires et fichiers existants devront être complétés et mis
 
 Voici les pré-requis pour exécuter nos codes d'évaluation.
 
-- Java v.x.y.z
-- ...
+- Java 17.0.1.0
 
 === Reproductibilité
 
 - Pour reproduire nos analyses :
-. Installez X
-. Lancez Y
-. ...
+. Installez JDK 17 ou modifier le pom pour changer la version de compilage du projet
+. Lancez le projet
 
 === Références
 
