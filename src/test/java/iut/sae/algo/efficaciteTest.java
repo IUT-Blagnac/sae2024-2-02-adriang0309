@@ -27,6 +27,9 @@ public class efficaciteTest extends TestCase{
 
    }
 
+   public static void main(String[] args) {
+      System.err.println(efficacite.RLE("abc", 2));
+   }
 
    /*
    * RLE(str, 1)=RLE(str)
