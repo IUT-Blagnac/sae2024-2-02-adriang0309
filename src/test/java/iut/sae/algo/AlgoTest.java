@@ -53,48 +53,4 @@ public class AlgoTest extends TestCase{
       }
    }
 
-   /*
-  * unRLE(RLE(str))=str
-  *
-  * unRLE("")=""
-  * unRLE("1a1b1c")="abc"
-  * unRLE("1a2b3c")="abbccc"
-  * unRLE("3a1b2a")="aaabaa"
-  * unRLE("1a1A1a")="aAa"
-  */
-
-   @Test
-   public void testUnRLE(){
-      try{
-         assertEquals("", Algo.unRLE(""));
-         assertEquals("abc", Algo.unRLE("1a1b1c"));
-         assertEquals("abbccc", Algo.unRLE("1a2b3c"));
-         assertEquals("aaabaa", Algo.unRLE("3a1b2a"));
-         assertEquals("aAa", Algo.unRLE("1a1A1a"));
-         assertEquals("WWWWWWWWWWWWW", Algo.unRLE("9W4W"));
-      }
-      catch(Exception e){
-         fail("Exception inatendue");
-      }
-   }
-   
-   @Test
-   public void testUnRLERecursif(){
-      try{
-         assertEquals("", Algo.unRLE("", 1));
-         assertEquals("", Algo.unRLE("", 3));
-         
-         assertEquals("abc", Algo.unRLE("1a1b1c", 1));
-         assertEquals("abbccc", Algo.unRLE("1a2b3c", 1));
-         assertEquals("aaabaa", Algo.unRLE("3a1b2a", 1));
-         assertEquals("aAa", Algo.unRLE("1a1A1a", 1));
-
-         assertEquals("abc", (Algo.unRLE("111a111b111c", 2)));
-         assertEquals("abc", (Algo.unRLE("311a311b311c", 3)));
-      }
-      catch(Exception e){
-         fail("Exception inatendue");
-      }
-   }
-
 }

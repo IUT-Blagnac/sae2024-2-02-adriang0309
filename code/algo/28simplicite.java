@@ -1,7 +1,6 @@
 package iut.sae.algo;
 
-
-public class Algo{
+public class 28simplicite {
     /**
      * Run Length Encoding algorithme classique 
      * @param in chaîne à compresser en entrée 
@@ -89,4 +88,3 @@ public class Algo{
         return RLE(chaineCompressee.toString(), iteration-1); // appel récursif
     }
 }
-
