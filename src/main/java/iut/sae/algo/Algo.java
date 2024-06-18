@@ -2,11 +2,8 @@ package iut.sae.algo;
 
 
 public class Algo{
-    /**
-     * Run Length Encoding algorithme classique 
-     * @param in chaîne à compresser en entrée 
-     * @return retourne la chaîne compressée
-     */
+    //66simplicite
+
     public static String RLE(String in){
         if (in == "") {
             return in;
@@ -87,6 +84,29 @@ public class Algo{
             }
         }
         return RLE(chaineCompressee.toString(), iteration-1); // appel récursif
+    }
+
+    public static String unRLE(String input) throws AlgoException{
+        String output = "";
+        int nombreDeLettres;
+        int taille = input.length();
+        char c;
+        for (int i = 0; i < taille; i+=2) {
+            c = input.charAt(i+1);
+            nombreDeLettres = Integer.parseInt(String.valueOf(input.charAt(i)));
+            for (int j = 0; j < nombreDeLettres; j++) {
+                output = output + String.valueOf(c);
+            }
+        }
+        return output;
+    }
+
+    public static String unRLE(String input, int iteration) throws AlgoException{
+        if(iteration <= 1){
+            return unRLE(input);
+        } else {
+            return unRLE(unRLE(input, iteration-1));
+        }
     }
 }
 
