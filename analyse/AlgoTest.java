@@ -7,18 +7,13 @@ public class AlgoTest extends TestCase {
 
    /*
     * Test suppplementaires
+    * Ce fichier comporte que les test supplementaires
     * Le main (calcule le temps d'éxecution d'une méthode)
     * Rajout des tests supplementaires dans les testsRle, etc....
     * Pour l'éxecuter utilisé le repertoire sae/algo/AlgoTest.java
     */
 
-   /*
-    * RLE("")=""
-    * RLE("abc")="1a1b1c"
-    * RLE("abbccc")="1a2b3c"
-    * RLE("aaabaa")="3a1b2a"
-    * RLE("aAa")="1a1A1a"
-    */
+
 
     //Supplementaire
    public static void main(String[] args) throws AlgoException {
@@ -38,10 +33,7 @@ public class AlgoTest extends TestCase {
 
    }
 
-   /*
-    * RLE(str, 1)=RLE(str)
-    * RLE(str, 3)=RLE(RLE(RLE(str)))
-    */
+   
    @Test
    public void testRLERecursif() {
       try {
@@ -53,15 +45,7 @@ public class AlgoTest extends TestCase {
       }
    }
 
-   /*
-    * unRLE(RLE(str))=str
-    *
-    * unRLE("")=""
-    * unRLE("1a1b1c")="abc"
-    * unRLE("1a2b3c")="abbccc"
-    * unRLE("3a1b2a")="aaabaa"
-    * unRLE("1a1A1a")="aAa"
-    */
+   
 
    @Test
    public void testUnRLE() {
