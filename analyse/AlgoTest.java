@@ -24,6 +24,12 @@ public class AlgoTest extends TestCase {
       System.out.println(Algo.RLE("abc", 2));
       endTime = System.currentTimeMillis();
       System.out.println("Temps d'exécution : " + (endTime - startTime) + " millisecondes");
+
+      startTime = System.currentTimeMillis();
+      System.out.println("--------------------------------------");
+      System.out.println(Algo.unRLE("111a111b111c", 2));
+      endTime = System.currentTimeMillis();
+      System.out.println("Temps d'exécution : " + (endTime - startTime) + " millisecondes");
    }
 
    @Test

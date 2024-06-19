@@ -2,58 +2,91 @@ package iut.sae.algo;
 
 
 public class Algo{
-    //66simplicite
+    //60sobriete
 
-    public static String RLE(String input) {
-        String output = "";
-        int nombreDeLettres = 1;
-        int taille = input.length();
-        for (int i = 0; i < taille; i++) {
-            if (i == taille - 1) {
-                output = output + nombreDeLettres + input.charAt(i);
-            } else if (input.charAt(i) != input.charAt(i + 1)) {
-                output = output + nombreDeLettres + input.charAt(i);
-                nombreDeLettres = 1;
-            } else if (nombreDeLettres == 9){
-                output = output + nombreDeLettres + input.charAt(i);
-                nombreDeLettres = 1;
-            } else {
-                nombreDeLettres = nombreDeLettres + 1;
-            }
-        }
-        return output;
-    }
+    public static String RLE(String in){
+                    
+        if (in.isEmpty()) return "";
+
+        StringBuilder ChaineFini = new StringBuilder();
+        char characterRepete = in.charAt(0);
+        int nbchar = 1;
+        char caractereCourant;
+
+        for (int i = 1; i < in.length(); i++) {
+            caractereCourant = in.charAt(i);
     
-
-    public static String RLE(String input, int iteration) throws AlgoException{
-        if(iteration <= 1){
-            return RLE(input);
-        } else {
-            return RLE(RLE(input, iteration-1));
-        }
-    }
-
-    public static String unRLE(String input) throws AlgoException{
-        String output = "";
-        int nombreDeLettres;
-        int taille = input.length();
-        char c;
-        for (int i = 0; i < taille; i+=2) {
-            c = input.charAt(i+1);
-            nombreDeLettres = Integer.parseInt(String.valueOf(input.charAt(i)));
-            for (int j = 0; j < nombreDeLettres; j++) {
-                output = output + String.valueOf(c);
+            if (caractereCourant == characterRepete && nbchar < 9) {
+                nbchar++;
+            } else {
+                ChaineFini.append(nbchar).append(characterRepete);
+                characterRepete = caractereCourant;
+                nbchar = 1;
             }
         }
-        return output;
+            
+        ChaineFini.append(nbchar).append(characterRepete);
+    
+        return ChaineFini.toString();
     }
 
-    public static String unRLE(String input, int iteration) throws AlgoException{
-        if(iteration <= 1){
-            return unRLE(input);
-        } else {
-            return unRLE(unRLE(input, iteration-1));
+
+    public static String RLE(String in, int iteration) throws AlgoException{
+        
+        if (iteration <= 0) {
+            throw new IllegalArgumentException(" Erreur : Le nombre d'iterations doit etre > 0 ");
         }
+        
+        StringBuilder ChaineFini = new StringBuilder(in);
+        
+        while (iteration > 0) {
+            ChaineFini = new StringBuilder(RLE(ChaineFini.toString()));
+            iteration--;  
+        }
+        
+        return ChaineFini.toString();
+    }
+
+    public static String unRLE(String in) throws AlgoException {
+
+        if (in.isEmpty()) {
+            return "";
+        }
+    
+        if (in.length() % 2 != 0) {
+            throw new IllegalArgumentException(" Erreur : La longueur de la chaine doit etre paire. ");
+        }
+    
+        StringBuilder ChaineFini = new StringBuilder();
+        int index;
+        char characterRepete;
+    
+        for (int i = 0; i < in.length(); i ++ ) {
+            index = Character.getNumericValue(in.charAt(i));
+            characterRepete = in.charAt(i + 1);
+            ChaineFini.append(String.valueOf(characterRepete).repeat(index));
+
+            i++;
+        }
+    
+        return ChaineFini.toString();
+    }
+
+
+    public static String unRLE(String in, int iteration) throws AlgoException{
+
+        if (iteration <= 0) {
+            throw new IllegalArgumentException(" Erreur : Le nombre d'iterations doit etre > 0 ");
+        }
+        
+        StringBuilder ChaineFini = new StringBuilder(in);
+        
+        while (iteration > 0) {
+            ChaineFini = new StringBuilder(unRLE(ChaineFini.toString()));
+            iteration--;  
+        }
+        
+        return ChaineFini.toString();
     }
 }
 
