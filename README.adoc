@@ -197,7 +197,7 @@ Voici les pré-requis pour exécuter nos codes d'évaluation.
 === Références
 
 - link:https://www.codacy.com/[Codacy]
-- link:https://www.youtube.com/watch?v=I4HBeeeSltU&ab_channel=NinJavascript [Video explicant Codacy]
+- link:https://www.youtube.com/watch?v=I4HBeeeSltU&ab_channel=NinJavascript/[Video explicant l'utilisation de Codacy]
 
 == Généralités, notation de la SAÉ et résultat du concours
 
