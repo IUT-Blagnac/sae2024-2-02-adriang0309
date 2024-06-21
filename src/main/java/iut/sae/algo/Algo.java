@@ -2,91 +2,61 @@ package iut.sae.algo;
 
 
 public class Algo{
-    //60sobriete
+    //11efficacite
 
-    public static String RLE(String in){
-                    
-        if (in.isEmpty()) return "";
+    public static String RLE(String in) {
+        if (in.length() == 0) return "";
 
-        StringBuilder ChaineFini = new StringBuilder();
-        char characterRepete = in.charAt(0);
-        int nbchar = 1;
-        char caractereCourant;
-
-        for (int i = 1; i < in.length(); i++) {
-            caractereCourant = in.charAt(i);
+        StringBuilder stringReturn = new StringBuilder();
+        int length = in.length();
     
-            if (caractereCourant == characterRepete && nbchar < 9) {
-                nbchar++;
+        char charSelect = in.charAt(0);
+        int nbChar = 1;
+    
+        for (int i = 1; i < length; i++) {
+            if (in.charAt(i) != charSelect) {
+                stringReturn.append(nbChar).append(charSelect);
+                charSelect = in.charAt(i);
+                nbChar = 1;
             } else {
-                ChaineFini.append(nbchar).append(characterRepete);
-                characterRepete = caractereCourant;
-                nbchar = 1;
+                nbChar++;
+                if (nbChar == 10) { 
+                    stringReturn.append(9).append(charSelect);
+                    nbChar = 1;
+                }
             }
         }
-            
-        ChaineFini.append(nbchar).append(characterRepete);
     
-        return ChaineFini.toString();
+        stringReturn.append(nbChar).append(charSelect);
+    
+        return stringReturn.toString();
     }
 
-
     public static String RLE(String in, int iteration) throws AlgoException{
-        
-        if (iteration <= 0) {
-            throw new IllegalArgumentException(" Erreur : Le nombre d'iterations doit etre > 0 ");
-        }
-        
-        StringBuilder ChaineFini = new StringBuilder(in);
-        
-        while (iteration > 0) {
-            ChaineFini = new StringBuilder(RLE(ChaineFini.toString()));
-            iteration--;  
-        }
-        
-        return ChaineFini.toString();
+        if (iteration < 1 ) throw new AlgoException("Impossible d'avoir une iteration < 1");
+        if (iteration == 1) return RLE(in);
+
+        return RLE(RLE(in, iteration-1));
     }
 
     public static String unRLE(String in) throws AlgoException {
+        StringBuilder stringReturn = new StringBuilder();
+        int length = in.length();
 
-        if (in.isEmpty()) {
-            return "";
+        for (int i=0; i<length; i += 2) {
+            for (int j=0; j< in.charAt(i) - '0'; j++) {
+                stringReturn.append(in.charAt(i+1));
+            }
         }
-    
-        if (in.length() % 2 != 0) {
-            throw new IllegalArgumentException(" Erreur : La longueur de la chaine doit etre paire. ");
-        }
-    
-        StringBuilder ChaineFini = new StringBuilder();
-        int index;
-        char characterRepete;
-    
-        for (int i = 0; i < in.length(); i ++ ) {
-            index = Character.getNumericValue(in.charAt(i));
-            characterRepete = in.charAt(i + 1);
-            ChaineFini.append(String.valueOf(characterRepete).repeat(index));
 
-            i++;
-        }
-    
-        return ChaineFini.toString();
+        return stringReturn.toString();
     }
 
-
     public static String unRLE(String in, int iteration) throws AlgoException{
+        if (iteration < 1 ) throw new AlgoException("Impossible d'avoir une iteration < 1");
+        if (iteration == 1) return unRLE(in);
 
-        if (iteration <= 0) {
-            throw new IllegalArgumentException(" Erreur : Le nombre d'iterations doit etre > 0 ");
-        }
-        
-        StringBuilder ChaineFini = new StringBuilder(in);
-        
-        while (iteration > 0) {
-            ChaineFini = new StringBuilder(unRLE(ChaineFini.toString()));
-            iteration--;  
-        }
-        
-        return ChaineFini.toString();
+        return unRLE(unRLE(in, iteration-1));
     }
 }
 
