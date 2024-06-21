@@ -2,61 +2,92 @@ package iut.sae.algo;
 
 
 public class Algo{
-    //11efficacite
+    //44efficacite
 
-    public static String RLE(String in) {
-        if (in.length() == 0) return "";
-
-        StringBuilder stringReturn = new StringBuilder();
-        int length = in.length();
+     /* Méthode RLE efficacite
+     * 
+     * Avec un String builder, plutôt que de concaténer des chaînes de caractères
+     */
+    public static String RLE(String input) {
+        if (input == null || input.isEmpty()) {
+            return "";
+        }
     
-        char charSelect = in.charAt(0);
-        int nbChar = 1;
+        char[] chars = input.toCharArray();
+        StringBuilder result = new StringBuilder();
+        int count = 1;
     
-        for (int i = 1; i < length; i++) {
-            if (in.charAt(i) != charSelect) {
-                stringReturn.append(nbChar).append(charSelect);
-                charSelect = in.charAt(i);
-                nbChar = 1;
-            } else {
-                nbChar++;
-                if (nbChar == 10) { 
-                    stringReturn.append(9).append(charSelect);
-                    nbChar = 1;
+        for (int i = 1; i < chars.length; i++) {
+            if (chars[i] == chars[i - 1]) {
+                if (count == 9) {
+                    result.append(9).append(chars[i - 1]);
+                    count = 1;
+                } else {
+                    count++;
                 }
+            } else {
+                result.append(count).append(chars[i - 1]);
+                count = 1;
             }
         }
     
-        stringReturn.append(nbChar).append(charSelect);
+        result.append(count).append(chars[chars.length - 1]);
+        return result.toString();
+    }
     
-        return stringReturn.toString();
+
+
+    public static String RLE(String in, int iteration) throws AlgoException {
+        // On vérifie si la chaîne d'entrée est vide
+        if (in == null || in.isEmpty()) {
+            return "";
+        }
+
+        // On vérifie si l'itération est valide
+        if (iteration < 1) {
+            throw new AlgoException("L'itération doit être supérieure à 0");
+        }
+
+        // On fait l'itération
+        for (int i = 0; i < iteration; i++) {
+            in = RLE(in);
+        }
+
+        return in;
     }
 
-    public static String RLE(String in, int iteration) throws AlgoException{
-        if (iteration < 1 ) throw new AlgoException("Impossible d'avoir une iteration < 1");
-        if (iteration == 1) return RLE(in);
-
-        return RLE(RLE(in, iteration-1));
-    }
 
     public static String unRLE(String in) throws AlgoException {
-        StringBuilder stringReturn = new StringBuilder();
-        int length = in.length();
-
-        for (int i=0; i<length; i += 2) {
-            for (int j=0; j< in.charAt(i) - '0'; j++) {
-                stringReturn.append(in.charAt(i+1));
+        if (in == null || in.isEmpty()) {
+            return "";
+        }
+    
+        char[] chars = in.toCharArray();
+        StringBuilder chaineFinale = new StringBuilder();
+        int cpt = 0;
+    
+        for (int i = 0; i < chars.length; i++) {
+            if (Character.isDigit(chars[i])) {
+                cpt = chars[i] - '0';
+                for (int j = 0; j < cpt; j++) {
+                    chaineFinale.append(chars[i + 1]);
+                }
+                i++; // Passer au caractère suivant
             }
         }
-
-        return stringReturn.toString();
+    
+        return chaineFinale.toString();
     }
 
-    public static String unRLE(String in, int iteration) throws AlgoException{
-        if (iteration < 1 ) throw new AlgoException("Impossible d'avoir une iteration < 1");
-        if (iteration == 1) return unRLE(in);
 
-        return unRLE(unRLE(in, iteration-1));
+
+    public static String unRLE(String in, int iteration) throws AlgoException {
+
+        for (int i = 0; i < iteration; i++) {
+            in = unRLE(in);
+        }
+
+        return in;
     }
 }
 
