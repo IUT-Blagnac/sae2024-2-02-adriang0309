@@ -177,6 +177,9 @@ Vous utiliserez le dépôt initial qui vous aura été attribué via classroom p
 
 WARNING: Les répertoires et fichiers existants devront être complétés et mis à jour sans être renommés. Les binaires de compilation (répertoire `bin` ou `target` par exemple) ne devront pas être poussés sur le dépôt.
 
+==== Phase 2 Rendu
+Mon rapport réalisé ce trouve dans le pdf suivant, veuillez le telecharger :
+link:rapport/Rapport SAE 2.02 Adrian GUERRERO[Rapport Classement] 
 === Pré-requis
 
 Voici les pré-requis pour exécuter nos codes d'évaluation.
